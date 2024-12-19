@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+server=$1
+command=$2
+
+[ -z "server" ] && exit 1
+[ -z "$command" ] && command="get"
+
+case $command in
+	add)
+		
+		;;
+	del)
+		
+		;;
+	set)
+		id=$3
+		characteristic=$4
+		value=$5
+		[ -z "$id" ] && exit 1
+		[ -z "$characteristic" ] && exit 1
+		[ -z "$value" ] && exit 1
+		payload='{ "id": 1, "topic": "'$command'", "payload": { "id": "'$id'", "characteristics": { "'$characteristic'": '$value'} } }'
+		;;
+	get)
+		id=$3
+		[ -z "$id" ] && id="all"
+		payload='{ "id": 1, "topic": "'$command'", "payload": { "id": "'$id'" } }'
+		;;
+	*)
+		echo "hoobs HOST add ID"
+		echo "             del ID|all"
+		echo "             set ID CHARACTERISTIC VALUE"
+		echo "             get ID|all"
+		exit 1
+		;;
+esac
+
+printf "Sent "
+echo $payload | json_pp
+
+echo
+printf "Received "
+wscat -c $server:4050 -x "$payload" | json_pp

@@ -1,0 +1,24 @@
+{
+  "displayName": "Berto HOOBS WebSocket Plugin",
+  "name": "homebridge-berto",
+  "version": "1.0.1-0",
+  "description": "Homebridge plugin for Berto HOOBS driver using WebSockets",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidmassot/homebridge-berto.git"
+  },
+  "engines": {
+    "node": ">=14.18.1",
+    "homebridge": ">=1.3.5"
+  },
+  "main": "index.js",
+  "keywords": [
+    "homebridge-plugin",
+    "homebridge-berto"
+  ],
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.13.0"
+  }
+}
